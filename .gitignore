@@ -1,0 +1,5 @@
+.DS*
+.history
+*.tfvars
+.terragrunt*
+.terraform.*
