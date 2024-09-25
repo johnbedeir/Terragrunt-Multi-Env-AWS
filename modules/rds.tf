@@ -15,7 +15,7 @@ resource "aws_rds_cluster" "rds_cluster" {
 
   skip_final_snapshot = false
 
-  final_snapshot_identifier = "${var.rds_cluster_name}-snapshot"
+  final_snapshot_identifier = "${var.environment}-${var.rds_cluster_name}-snapshot"
 
   tags = {
     Name = "${var.rds_cluster_name}"

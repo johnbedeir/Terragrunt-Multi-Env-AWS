@@ -58,7 +58,8 @@ This command upgrades the Terraform providers and modules to the latest versions
 terragrunt run-all plan
 ```
 
-<img src=imgs/plan.png>
+<img src=imgs/dev-plan.png>
+<img src=imgs/prod-plan.png>
 
 This command generates an execution plan for both the **dev** and **prod** environments, showing what changes will be made to your infrastructure.
 
