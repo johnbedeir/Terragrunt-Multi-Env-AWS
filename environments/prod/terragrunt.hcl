@@ -7,11 +7,8 @@ terraform {
 }
 
 inputs        = {
-  ec2name     = "prod-ec2"
-  ec2ami      = "ami-0e04bcbe83a83792e"
-  ec2type     = "t2.medium"
-  bucket_name = "prod-bucket-0e04bcbe83"
-  ec2name     = "prod-ec2"
-  vpcname     = "prod-vpc"
-  subnetname  = "prod-subnet"
+  environment     = "prod"
+  main_network_block = "10.1.0.0/16"
+  private_subnets = ["10.1.1.0/24", "10.1.2.0/24"]
+  public_subnets = ["10.1.101.0/24", "10.1.102.0/24"]
 }
