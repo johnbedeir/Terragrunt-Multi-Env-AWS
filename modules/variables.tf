@@ -1,41 +1,119 @@
-variable "ec2name" {
-  description = "Name of the ec2"
-  type        = string
+variable "ecr_name" {
+  type    = string
+  default = "app-img"
 }
 
-variable "ec2type" {
-  description = "Type of the ec2"
+variable "name_prefix" {
   type        = string
+  default     = "cluster-1"
+  description = "Prefix to be used on each infrastructure object Name created in AWS."
 }
 
-variable "ec2ami" {
-  description = "AMI of the ec2"
-  type        = string
-}
-
-variable "aws_region" {
-  description = "aws region"
-  type        = string
+variable "region" {
+  type    = string
   default = "eu-central-1"
 }
 
-variable "aws_profile" {
-  description = "aws profile"
-  type        = string
-  default = "default"
+variable "environment" {
+  type    = string
 }
 
-variable "bucket_name" {
-  description = "Name of the S3 bucket"
-  type        = string
+variable "admin_users" {
+  type        = list(string)
+  default     = ["triple-a"]
+  description = "List of Kubernetes admins."
 }
 
-variable "vpcname" {
-  description = "Name of the vpc"
-  type        = string
+variable "developer_users" {
+  type        = list(string)
+  default     = []
+  description = "List of Kubernetes developers."
 }
 
-variable "subnetname" {
-  description = "Name of the subnet"
+variable "main_network_block" {
   type        = string
+  description = "Base CIDR block to be used in our VPC."
+}
+
+variable "private_subnets" {
+  type        = list(string)
+  description = "private_subnets"
+}
+
+variable "public_subnets" {
+  type        = list(string)
+  description = "public_subnets"
+}
+
+variable "subnet_prefix_extension" {
+  type        = number
+  default     = 4
+  description = "CIDR block bits extension to calculate CIDR blocks of each subnetwork."
+}
+
+variable "zone_offset" {
+  type        = number
+  default     = 8
+  description = "CIDR block bits extension offset to calculate Public subnets, avoiding collisions with Private subnets."
+}
+
+variable "asg_sys_instance_types" {
+  type        = list(string)
+  default     = ["t3a.medium"]
+  description = "List of EC2 instance machine types to be used in EKS for the system workload."
+}
+
+variable "asg_dev_instance_types" {
+  type        = list(string)
+  default     = ["t3a.medium"]
+  description = "List of EC2 instance machine types to be used in EKS for development workload."
+}
+
+variable "autoscaling_minimum_size_by_az" {
+  type        = number
+  default     = 1
+  description = "Minimum number of EC2 instances to auto-scale our EKS cluster on each AZ."
+}
+
+variable "autoscaling_maximum_size_by_az" {
+  type        = number
+  default     = 2
+  description = "Maximum number of EC2 instances to auto-scale our EKS cluster on each AZ."
+}
+
+variable "autoscaling_average_cpu" {
+  type        = number
+  default     = 60
+  description = "Average CPU threshold to auto-scale EKS EC2 instances."
+}
+
+variable "db_username" {
+  description = "The username for the DB instance"
+  type        = string
+
+}
+
+variable "rds_cluster_name" {
+  type    = string
+  default = "rds-cluster"
+}
+
+variable "rds_instance_name" {
+  type    = string
+  default = "rds-instance"
+}
+
+variable "rds_engine" {
+  type    = string
+  default = "aurora-mysql"
+}
+
+variable "db_name" {
+  type    = string
+  default = "todo_db"
+}
+
+variable "rds_engine_version" {
+  type    = string
+  default = "8.0"
 }
