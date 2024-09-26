@@ -1,4 +1,4 @@
-# Terragrunt Multi-Env Infrastructure
+# Terragrunt Multi-Env Infrastructure on AWS
 
 <img src=imgs/cover.png>
 
@@ -132,6 +132,14 @@ To connect to your **dev** or **prod** RDS clusters, follow these steps:
      mysql -h prod-rds-cluster.cluster-cxzadf8nmshb.eu-central-1.rds.amazonaws.com -u <username-from-secret-manager> -P 3306 -p
      ```
      (Replace `<username-from-secret-manager>` with the actual username retrieved from Secrets Manager. You will be prompted to enter the password.)
+
+### Teardown All Environments
+
+To destroy the infrastructure for both dev and prod environments, you can use the following commands.
+
+```bash
+terragrunt run-all destroy
+```
 
 ## Notes
 
